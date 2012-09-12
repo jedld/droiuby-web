@@ -19,7 +19,7 @@ RailsAdmin.config do |config|
   config.main_app_name = ['Droiuby Web', 'Admin']
   # or for a dynamic name:
   # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
-
+  config.authorize_with :cancan
 
   #  ==> Global show view settings
   # Display empty fields in show views
@@ -34,7 +34,7 @@ RailsAdmin.config do |config|
   # config.excluded_models = [App, AppScript, Resources, User]
 
   # Add models here if you want to go 'whitelist mode':
-  # config.included_models = [App, AppScript, Resources, User]
+  config.included_models = [App, AppScript, Resources, User]
 
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
@@ -79,25 +79,26 @@ RailsAdmin.config do |config|
 
   # All fields marked as 'hidden' won't be shown anywhere in the rails_admin unless you mark them as visible. (visible(true))
 
-  # config.model App do
-  #   # Found associations:
-  #     configure :user, :belongs_to_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :name, :string 
-  #     configure :description, :string 
-  #     configure :launcher_icon, :string 
-  #     configure :base_url, :string 
-  #     configure :main_layout, :string 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime   #   # Sections:
-  #   list do; end
-  #   export do; end
-  #   show do; end
-  #   edit do; end
-  #   create do; end
-  #   update do; end
-  # end
+  config.model App do
+     # Found associations:
+
+    edit do
+      configure :user do
+        visible false
+      end
+
+      field :user_id, :hidden do
+        visible true
+        default_value do
+          bindings[:view]._current_user.id
+        end
+      end
+     field :name, :string
+     field :description, :string
+     field :base_url, :string
+     field :main_layout, :string
+    end
+  end
   # config.model AppScript do
   #   # Found associations:
   #     configure :app, :belongs_to_association   #   # Found columns:

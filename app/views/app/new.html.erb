@@ -1,0 +1,11 @@
+<%= form_for @app, :url => { :action => "create" } do |f| %>
+    <%=  f.label :name, "name" %>
+    <%=  f.text_field :name %><br/>
+    <%=  f.label :description, "description" %>
+    <%=  f.text_field :description %><br/>
+    <%=  f.label :base_url, "base URL" %>
+    <%=  f.text_field :base_url %><br/>
+    <%=  f.label :main_layout, "Main Layout" %>
+    <%=  f.text_field :main_layout %><br/>
+    <%= f.submit "Create" %>
+<% end %>

@@ -4,7 +4,10 @@ DroiubyWeb::Application.routes.draw do
   devise_for :users
 
   get "home/index"
-  get "app/:name" => "app#show"
+  get "app/new" => "app#new"
+  get "app/config/:name" => "app#show"
+  post "app/create" => "app#create"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -55,7 +58,7 @@ DroiubyWeb::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => 'home#index'
+   root :to => 'rails_admin/main#dashboard'
 
   # See how all your routes lay out with "rake routes"
 

@@ -5,7 +5,7 @@ DroiubyWeb::Application.routes.draw do
 
   get "home/index"
   get "app/new" => "app#new"
-  get "app/config/:name" => "app#show"
+  get "app/config/:name" => "app#show", :as => 'config'
   post "app/create" => "app#create"
 
 
@@ -58,7 +58,7 @@ DroiubyWeb::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => 'rails_admin/main#dashboard'
+   root :to => 'rails_admin/home#index'
 
   # See how all your routes lay out with "rake routes"
 

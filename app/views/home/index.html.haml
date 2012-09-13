@@ -1,0 +1,11 @@
+%h1
+  Hi #{current_user.nickname}
+.welcome
+  Welcome to the Droiuby App development platform
+%p.heading
+  My Apps
+.actions= link_to("Create App", app_new_path)
+- current_user.apps.each do |a|
+  .name= a.name
+  .description= a.description
+  .config_url= link_to('config xml',config_url(name: a.name, format: 'xml'))

@@ -1,3 +1,37 @@
-// Place all the styles related to the app controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+fieldset {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+fieldset ol {
+  padding: 10px 10px 0 10px;
+  list-style: none;
+}
+
+fieldset li {
+  position: relative;
+  padding-bottom: 1em;
+}
+
+label {
+  position: relative;
+  clear: left;
+  float: left;
+  width: 15em;
+  margin-right: 5px;
+  text-align: right;
+  line-height: 3.4em;
+}
+
+input {
+  padding: 5px;
+  font-size: 1.4em;
+  border: 1px solid #493F0B;
+  color: #1E1903;
+  background: #F5F6D4;
+}
+
+fieldset#submitform {
+  background-image: none;
+  border-style: none;
+}

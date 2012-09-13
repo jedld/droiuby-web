@@ -1,0 +1,10 @@
+%h1= "Resources of for app #{@app.name}"
+%ol
+  - @app.resources.each do |r|
+    %li
+      .resource-name
+        = r.name
+      .resource-type
+        = r.resource_type
+
+

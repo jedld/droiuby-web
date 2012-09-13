@@ -5,6 +5,7 @@ class CreateResources < ActiveRecord::Migration
       t.integer :app_id
       t.integer :resource_type
       t.string :resource_url
+      t.text :body
       t.timestamps
     end
   end

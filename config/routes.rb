@@ -1,4 +1,6 @@
 DroiubyWeb::Application.routes.draw do
+  get "resource/list"
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   devise_for :users
@@ -7,6 +9,7 @@ DroiubyWeb::Application.routes.draw do
   get "app/new" => "app#new"
   get "app/config/:name" => "app#show", :as => 'config'
   post "app/create" => "app#create"
+  get "resource/:id" => "resource#list", :as => 'show_resource'
 
 
   # The priority is based upon order of creation:

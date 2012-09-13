@@ -1,5 +1,5 @@
 class AppController < ApplicationController
-
+  before_filter :authenticate_user!, :only=>[:new,:create]
   layout :false, :only => :show
 
   def show

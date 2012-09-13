@@ -9,3 +9,4 @@
   .name= a.name
   .description= a.description
   .config_url= link_to('config xml',config_url(name: a.name, format: 'xml'))
+  .resource= link_to('manage resource', show_resource_path(a))

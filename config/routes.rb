@@ -6,6 +6,7 @@ DroiubyWeb::Application.routes.draw do
   devise_for :users
 
   get "home/index"
+  get "droiuby" => "home#droiuby"
   get "app/new" => "app#new"
   get "app/config/:name" => "app#show", :as => 'config'
   post "app/create" => "app#create"

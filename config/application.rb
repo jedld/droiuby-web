@@ -60,5 +60,7 @@ module DroiubyWeb
     config.assets.version = '1.0'
     config.assets.initialize_on_precompile = false
 
+    #custom droiuby asset paths
+    config.assets.paths << Rails.root.join("droiuby")
   end
 end

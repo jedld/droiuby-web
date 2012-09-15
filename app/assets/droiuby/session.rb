@@ -1,7 +1,7 @@
 def on_create
   
   V('#submit').on(:click) do |v|
-    login_form = V('#form_fields')
+    login_form = V('#login_form')
 
     login_form.form_fields
 

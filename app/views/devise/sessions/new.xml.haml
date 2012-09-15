@@ -1,11 +1,11 @@
 %activity{controller: asset_path('session.rb') }
-  %layout{id: 'login_form', type: 'linear', width: 'match', height: 'match'}
+  %layout{id: 'login_form', type: 'linear', width: 'match', height: 'match', 'data-method' => 'post', 'data-url' => session_path(resource_name)}
     %layout{type: 'linear', width: 'match', height: 'wrap'}
       %img{src: '@drawable:droiuby', gravity: 'center', width: '100dip', height: '100dip'}
     %t{size: 18} Sign in
     %t Login
-    %input{id: 'login', width: 'match', name: 'login'} Login
+    %input{id: 'login', width: 'match', name: 'user[email]'} Login
     %t Password
-    %input{id: 'password', width: 'match', type: 'password', hint: 'Enter Password', name: 'password'} Password
-    %checkbox{id: 'remember_me', name: 'remember_me', width: 'match'}
+    %input{id: 'password', width: 'match', type: 'password', hint: 'Enter Password', name: 'user[password]'} Password
+    %checkbox{id: 'remember_me', name: 'user[remember_me]', width: 'match'}
     %button{id: 'submit'} Submit

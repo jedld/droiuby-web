@@ -1,6 +1,8 @@
 %activity
   %layout{type: 'linear', width: 'match', height: 'match'}
-    %t{width: 'match', size: 20}= "Hi #{current_user.nickname}"
+    %layout{type: 'horizontal', width: 'match', height: 'wrap'}
+      %t{width: 'match', size: 20}= "Hi #{current_user.nickname}"
+      %button{id: 'logout', "data-url" => destroy_user_session_path, "data-method" => 'delete' } Logout
     %t{width: 'match', size: 14, style: 'bold'} Welcome to the Droiuby App development platform
     %t{width: 'match'} My Apps
     %button{id: 'create_app', "data-url" => app_new_path} Create App
@@ -10,5 +12,5 @@
           %layout{type: 'linear'}
             %t= a.name
             %t= a.description
-            %button{id: 'view_xml', "data-url"=> link_to('config xml',config_url(name: a.name, format: 'xml'))}
+            %button{id: 'view_xml', "data-url"=> config_url(name: a.name, format: 'xml')}
             %button{id: 'manage_resource', "data-url" => show_resource_path(a)}

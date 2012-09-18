@@ -10,13 +10,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
-
-
   def check_user_agent
     @droiuby_agent = false
     if request.env['HTTP_USER_AGENT'].match /Droiuby/
       @droiuby_detected = true
-      request.format = 'xml'
+      request.format = 'droiuby'
     end
   end
 

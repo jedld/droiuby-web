@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20120912111929) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "users", :force => true do |t|
+  create_table "devise", :force => true do |t|
     t.string   "email"
     t.string   "first_name"
     t.string   "last_name"

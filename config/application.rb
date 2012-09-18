@@ -63,5 +63,7 @@ module DroiubyWeb
 
     #custom droiuby asset paths
     config.assets.paths << Rails.root.join("droiuby")
+
+    Mime::Type.register "text/droiuby", :droiuby
   end
 end

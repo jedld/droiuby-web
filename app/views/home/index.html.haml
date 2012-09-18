@@ -4,9 +4,21 @@
   Welcome to the Droiuby App development platform
 %p.heading
   My Apps
-.actions= link_to("Create App", app_new_path)
-- current_user.apps.each do |a|
-  .name= a.name
-  .description= a.description
-  .config_url= link_to('config xml',config_url(name: a.name, format: 'xml'))
-  .resource= link_to('manage resource', show_resource_path(a))
+- if flash[:error]
+  %p.notice=flash[:error]
+- if flash[:notice]
+  %p.notice=flash[:notice]
+.actions.btn= link_to("Create App", app_new_path)
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th XML
+      %th Manage
+  - current_user.apps.each do |a|
+    %tr
+      %td= a.name
+      %td= a.description
+      %td= link_to('config xml',config_url(name: a.name, format: 'xml'))
+      %td= link_to('manage resource', show_resource_path(a), class: 'btn btn-inverse')

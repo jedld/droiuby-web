@@ -6,6 +6,8 @@ class Resource < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :app_id
   validates_presence_of :resource_type
 
+  attr_accessible :app_id, :name, :resource_type, :body
+
   belongs_to :app
 
 end

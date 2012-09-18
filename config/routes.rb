@@ -11,6 +11,8 @@ DroiubyWeb::Application.routes.draw do
   get "app/config/:name" => "app#show", :as => 'config'
   post "app/create" => "app#create"
   get "resource/:id" => "resource#list", :as => 'show_resource'
+  get "resource/new/:id" => "resource#new", :as => "new_resource"
+  post "resource/create" => "resource#create"
 
 
   # The priority is based upon order of creation:

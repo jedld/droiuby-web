@@ -19,6 +19,7 @@ class AppController < ApplicationController
     @app = App.new(params[:app])
     @app.user = current_user
     @app.save!
+    flash[:notice] = "App #{@app.name} created"
     render 'home/index'
   end
 

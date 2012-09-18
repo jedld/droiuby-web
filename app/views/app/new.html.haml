@@ -1,9 +1,10 @@
+%h2 Create App
 = form_for @app, :url => { :action => "create" }, class: 'form' do |f|
   %p.name
-    = f.text_field :name
     = f.label :name, "Name"
+    = f.text_field :name
   %p.description
-    = f.text_field :description
     = f.label :description, "Description"
+    = f.text_field :description
   %p.submit
     = f.submit "Create", id: 'submitform'

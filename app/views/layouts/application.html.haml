@@ -8,8 +8,18 @@
     = javascript_include_tag asset_path('bootstrap.min')
     = csrf_meta_tags
 %body
-  = image_tag asset_path('droiuby.png'), class: :site_logo
-  - if current_user
-    .logout
-      = link_to("Logout",destroy_user_session_path)
-  = yield
+  .container
+    .row
+      .span9
+        = image_tag asset_path('droiuby.png'), class: :site_logo
+        .row
+          .span9
+            - if current_user
+              %ul.nav.nav-pills
+                %li.active
+                  = link_to("Home", home_index_path)
+                %li
+                  = link_to("Logout",destroy_user_session_path)
+            .row
+              .span9
+                = yield

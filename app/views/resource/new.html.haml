@@ -1,0 +1,14 @@
+%h2 Create Resource
+= form_for @resource, :url => { :action => "create" }, class: 'form' do |f|
+  = f.hidden_field :app_id, value: @resource.app_id
+  %p
+    = f.label :name, "Name"
+    = f.text_field :name
+  %p
+    = f.label :type, "Type"
+    = f.select :resource_type, options_for_select([["Layout", Resource::TYPE[:template]], ["Image", Resource::TYPE[:image]], ["Script", Resource::TYPE[:script]]])
+  %p
+    = f.label :body, "Resource Body"
+    = f.text_area :body
+  %p
+    = f.submit "Submit", class: 'btn btn-primary'

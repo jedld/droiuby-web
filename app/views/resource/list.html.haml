@@ -1,10 +1,16 @@
-%h1= "Resources of for app #{@app.name}"
-%ol
+%h1= "Resources of for #{@app.name}"
+= link_to "Add Resource", new_resource_path(@app),  class: 'btn'
+%table.table
+  %thead
+    %th
+      Name
+    %th
+      Resource Type
   - @app.resources.each do |r|
-    %li
-      .resource-name
+    %tr
+      %td
         = r.name
-      .resource-type
+      %td
         = r.resource_type
 
 

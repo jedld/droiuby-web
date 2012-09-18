@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title DroiubyWeb
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = javascript_include_tag src: "http://code.jquery.com/jquery-latest.js"
+    = javascript_include_tag asset_path('bootstrap.min')
+    = csrf_meta_tags
+%body
+  = image_tag asset_path('droiuby.png'), class: :site_logo
+  - if current_user
+    .logout
+      = link_to("Logout",destroy_user_session_path)
+  = yield

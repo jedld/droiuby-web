@@ -1,13 +1,13 @@
 %activity{controller: asset_path('session.rb') }
   %layout{type: 'scroll', width: 'match', height: 'match'}
-    %layout{id: 'login_form', type: 'linear', width: 'match', height: 'match', 'data-method' => 'post', 'data-url' => session_path(resource_name)}
+    %layout#login_form{type: 'linear', width: 'match', height: 'match', 'data-method' => 'post', 'data-url' => session_path(resource_name)}
       %layout{type: 'linear', width: 'match', height: 'wrap'}
         %img{src: '@drawable:droiuby', gravity: 'center', width: '200dip', height: '200dip'}
       %t{size: 18} Sign in
       %input{visibility: 'hidden', name: 'authenticity_token', value: form_authenticity_token}
       %t Login
-      %input{id: 'login', width: 'match', name: 'user[email]'}
+      %input#login{width: 'match', name: 'user[email]'}
       %t Password
-      %input{id: 'password', width: 'match', type: 'password', hint: 'Enter Password', name: 'user[password]'}
+      %input#password{width: 'match', type: 'password', hint: 'Enter Password', name: 'user[password]'}
       %checkbox{id: 'remember_me', name: 'user[remember_me]', width: 'match'} Remember Me
-      %button{id: 'submit'} Submit
+      %button#submit Submit

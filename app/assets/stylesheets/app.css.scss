@@ -29,8 +29,15 @@ input:focus, textarea:focus {
   color: #FFFFFF;
 }
 
+.site_header {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px
+}
 
 img.site_logo {
   height: 100px;
-  width: 100px
+  width: 100px;
 }
+

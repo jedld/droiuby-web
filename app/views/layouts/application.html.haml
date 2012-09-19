@@ -11,7 +11,9 @@
   .container
     .row
       .span9
-        = image_tag asset_path('droiuby.png'), class: :site_logo
+        .site_header
+          = image_tag asset_path('droiuby.png'), class: 'site_logo'
+          %h1 droiuby...
         .row
           .span9
             - if current_user

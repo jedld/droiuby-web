@@ -1,4 +1,4 @@
-%h1= "Resources of for #{@app.name}"
+%h1= "Resources for #{@app.name}"
 = link_to "Add Resource", new_resource_path(@app),  class: 'btn'
 %table.table
   %thead
@@ -6,11 +6,14 @@
       Name
     %th
       Resource Type
+    %th
+      Manage
   - @app.resources.each do |r|
     %tr
       %td
         = r.name
       %td
-        = r.resource_type
+        = r.resource_type_name
+      %td= link_to('Edit', edit_resource_path(r), class: 'btn btn-primary')
 
 

@@ -6,6 +6,8 @@
     = javascript_include_tag "application"
     = javascript_include_tag src: "http://code.jquery.com/jquery-latest.js"
     = javascript_include_tag asset_path('bootstrap.min')
+    = javascript_include_tag asset_path('qrcode')
+    = javascript_include_tag "http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"
     = csrf_meta_tags
 %body
   .container
@@ -23,5 +25,12 @@
                 %li
                   = link_to("Logout",destroy_user_session_path)
             .row
-              .span9
-                = yield
+              - if flash[:notice]
+                .span9
+                  .alert.alert-info= flash[:notice]
+              - if flash[:error]
+                .span9
+                  .alert.alert-error= flash[:error]
+              .row
+                .span9
+                  = yield

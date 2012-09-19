@@ -21,4 +21,7 @@
       %td= a.name
       %td= a.description
       %td= link_to('config xml',config_url(name: a.name, format: 'xml'))
-      %td= link_to('manage resource', show_resource_path(a), class: 'btn btn-inverse')
+      %td
+        = link_to('info',app_info_path(a), class: 'btn')
+        = link_to('Edit', app_edit_show_path(a), class: 'btn btn-primary')
+        = link_to('manage resource', show_resource_path(a), class: 'btn btn-inverse')

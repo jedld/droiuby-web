@@ -1,0 +1,8 @@
+%h4
+  = @app.name
+%p
+  = @app.description
+%h4 App XML
+%pre= config_url(name: @app.name, format: 'xml')
+%h4 QRCode
+.qrcode{:"data-url"=>config_url(name: @app.name, format: 'xml')}

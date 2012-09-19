@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120912111929) do
+ActiveRecord::Schema.define(:version => 20120919042900) do
 
   create_table "app_scripts", :force => true do |t|
     t.integer  "app_id"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(:version => 20120912111929) do
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.string   "launcher_icon_file_name"
+    t.integer  "main_layout_id"
+    t.string   "short_name"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -53,9 +55,10 @@ ActiveRecord::Schema.define(:version => 20120912111929) do
     t.string   "resource_url"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.text     "body"
   end
 
-  create_table "devise", :force => true do |t|
+  create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "first_name"
     t.string   "last_name"

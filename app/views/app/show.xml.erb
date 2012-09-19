@@ -2,6 +2,6 @@
     <name><%= @app.name %></name>
     <description><%=  @app.description %></description>
     <launcher_icon><%=  @app.launcher_icon %></launcher_icon>
-    <base_url><%=  "http://#{request.host_with_port}/app/#{@app.name}/" %></base_url>
-    <main>main.xml</main>
+    <base_url><%=  "http://#{request.host_with_port}/service/#{@app.name}/" %></base_url>
+    <main><%= @app.main_layout %></main>
 </app_descriptor>

@@ -1,5 +1,6 @@
 class AppController < ApplicationController
-  before_filter :authenticate_user!, :only=>[:new,:create]
+  before_filter :authenticate_user!, :only=>[:new, :create, :update]
+  before_filter :load_app, :only=>[:update, :edit_show, :info]
   layout :false, :only => :show
 
   def show
@@ -11,8 +12,25 @@ class AppController < ApplicationController
     end
   end
 
+  def update
+    if @app.update_attributes(params[:app])
+      flash[:notice] = "App #{@app.name} updated."
+    else
+      flash[:error] = @app.errors
+    end
+    render "app/new"
+  end
+
+  def edit_show
+    render :new
+  end
+
   def new
     @app = App.new
+  end
+
+  def info
+
   end
 
   def create
@@ -22,5 +40,11 @@ class AppController < ApplicationController
     flash[:notice] = "App #{@app.name} created"
     render 'home/index'
   end
+
+protected
+
+    def load_app
+      @app = App.find_by_id params[:id]
+    end
 
 end

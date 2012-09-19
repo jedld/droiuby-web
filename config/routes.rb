@@ -10,8 +10,14 @@ DroiubyWeb::Application.routes.draw do
   get "app/new" => "app#new"
   get "app/config/:name" => "app#show", :as => 'config'
   post "app/create" => "app#create"
+  get "app/info/:id" => "app#info", :as => 'app_info'
+  get "app/show/:id" => "app#edit_show", :as => 'app_edit_show'
+  put "app/update/:id" => "app#update", :as => 'app_update'
+  get "service/:id/:resource_name" => "resource#show", :as => 'service_path'
   get "resource/:id" => "resource#list", :as => 'show_resource'
   get "resource/new/:id" => "resource#new", :as => "new_resource"
+  get "resource/edit/:id" => "resource#show_for_update", :as => "edit_resource"
+  post "resource/update/:id" => "resource#update", :as => 'update_resource'
   post "resource/create" => "resource#create"
 
 

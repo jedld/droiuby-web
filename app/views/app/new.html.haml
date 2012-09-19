@@ -1,10 +1,20 @@
 %h2 Create App
-= form_for @app, :url => { :action => "create" }, class: 'form' do |f|
+- action = @app.persisted? ? 'update' : 'create'
+= form_for @app, :url => { :action => action }, class: 'form' do |f|
+  - if @app.persisted?
+    = f.hidden_field :id, value: @app.id
   %p.name
     = f.label :name, "Name"
     = f.text_field :name
+  %p.short_name
+    = f.label :short_name, "Short Name"
+    = f.text_field :short_name, class: 'input-medium'
   %p.description
     = f.label :description, "Description"
-    = f.text_field :description
-  %p.submit
-    = f.submit "Create", id: 'submitform'
+    = f.text_area :description, class: 'input-large'
+  - if @app.persisted?
+    %p.submit
+      = f.submit "Update", id: 'submitform'
+  - else
+    %p.submit
+      = f.submit "Create", id: 'submitform'

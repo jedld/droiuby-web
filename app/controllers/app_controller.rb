@@ -1,13 +1,13 @@
 class AppController < ApplicationController
   before_filter :authenticate_user!, :only=>[:new, :create, :update]
   before_filter :load_app, :only=>[:update, :edit_show, :info]
+  skip_before_filter :check_user_agent, :only => [:show]
   layout :false, :only => :show
 
   def show
     name = params[:name]
     @app = App.find_by_name name
     respond_to do |format|
-      format.html # index.html.erb
       format.xml # index.xml.builder
     end
   end

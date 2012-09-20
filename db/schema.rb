@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20120919042900) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
+    t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(:version => 20120919042900) do
     t.integer  "app_id"
     t.integer  "resource_type"
     t.string   "resource_url"
+    t.text     "body"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.text     "body"
   end
 
   create_table "users", :force => true do |t|

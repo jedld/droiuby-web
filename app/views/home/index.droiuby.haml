@@ -1,4 +1,4 @@
-%activity
+%activity{controller: asset_path('home.rb')}
   %layout{type: 'linear', width: 'match', height: 'match'}
     %layout{type: 'horizontal', width: 'match', height: 'wrap'}
       %t{width: 'match', size: 20}= "Hi #{current_user.nickname}"
@@ -9,8 +9,8 @@
     %layout{type: 'scroll', width: 'match', height: 'match'}
       %layout{type: 'linear', width: 'match', height: 'wrap'}
         - current_user.apps.each do |a|
-          %layout{type: 'linear'}
+          %layout{type: 'linear', orientation: 'horizontal'}
             %t= a.name
             %t= a.description
-            %button{id: 'view_xml', "data-url"=> config_url(name: a.name, format: 'xml')}
-            %button{id: 'manage_resource', "data-url" => show_resource_path(a)}
+            %button{id: 'view_xml', class: 'config-url', "data-url"=> config_url(name: a.name, format: 'xml')} Run
+            %button{id: 'manage_resource', "data-url" => show_resource_path(a)} Manage Resource

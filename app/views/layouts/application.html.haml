@@ -18,19 +18,24 @@
           %h1 droiuby...
         .row
           .span9
-            - if current_user
-              %ul.nav.nav-pills
-                %li.active
-                  = link_to("Home", home_index_path)
-                %li
-                  = link_to("Logout",destroy_user_session_path)
+            - if flash[:notice]
+              .span9
+                .alert.alert-info= flash[:notice]
+            - if flash[:error]
+              .span9
+                .alert.alert-error= flash[:error]
             .row
-              - if flash[:notice]
-                .span9
-                  .alert.alert-info= flash[:notice]
-              - if flash[:error]
-                .span9
-                  .alert.alert-error= flash[:error]
+              - if current_user
+                %ul.nav.nav-pills
+                  %li.active
+                    = link_to("Home", home_index_path)
+                  %li
+                    = link_to("Logout",destroy_user_session_path)
+
               .row
                 .span9
                   = yield
+                  .row
+                    .span9
+                      %a{href: "http://play.google.com/store/apps/details?id=com.droiuby.client"}
+                        %img{alt: "Android app on Google Play", src: "http://www.android.com/images/brand/android_app_on_play_logo_large.png"}

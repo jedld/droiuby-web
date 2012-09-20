@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def check_user_agent
     @droiuby_agent = false
-    if request.env['HTTP_USER_AGENT'] && request.env['HTTP_USER_AGENT'].match /Droiuby/
+    if request.env['HTTP_USER_AGENT'] && request.env['HTTP_USER_AGENT'].match(/Droiuby/)
       @droiuby_detected = true
       request.format = 'droiuby'
     end

@@ -33,6 +33,10 @@ class Resource < ActiveRecord::Base
     resource_type == TYPE[:template]
   end
 
+  def is_script?
+    resource_type == TYPE[:script]
+  end
+
   protected
 
   def transform_name

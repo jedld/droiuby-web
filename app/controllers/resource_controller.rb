@@ -58,10 +58,12 @@ class ResourceController < ApplicationController
 
   def show
     resource = @app.resources.where(name: params[:resource_name]).first
-    if resource.is_template?
+    if resource.is_script?
+      render :text=>resource.body, :content_type => "application/x-ruby"
+    elsif resource.is_template?
       render :text=>resource.body, :content_type => "application/xml"
     else
-      render :text=>"unknown content", :content_type => "text/plain"
+      render :text=>resource.body, :content_type => "text/plain"
     end
   end
 

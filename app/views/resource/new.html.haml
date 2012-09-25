@@ -11,11 +11,26 @@
   .control-group
     = f.label :type, "Type"
     .controls
-      = f.select :resource_type, options_for_select([["Layout", Resource::TYPE[:template]], ["Image", Resource::TYPE[:image]], ["Script", Resource::TYPE[:script]]])
+      = f.select :resource_type, options_for_select([["Layout", Resource::TYPE[:template]], ["Image", Resource::TYPE[:image]], ["Script", Resource::TYPE[:script]]]), class: 'resource-type-picker'
   .control-group
     = f.label :body, "Resource Body"
-    .controls
-      = f.text_area :body, class: "input-xxlarge"
+    .controls.editor
+      = f.text_area :body, class: 'hidden editor'
+      .div#editor.input-xxlarge
+      :javascript
+        droiuby.editor = ace.edit("editor");
+        droiuby.editor.setTheme("ace/theme/monokai");
+        droiuby.editor.setValue($('textarea.editor').text());
+        droiuby.editor.getSession().on('change', function(e) {
+            $('textarea.editor').text(droiuby.editor.getValue());
+        });
+      - if (@resource.resource_type == Resource::TYPE[:template])
+        :javascript
+          droiuby.editor.getSession().setMode("ace/mode/xml");
+      - elsif (@resource.resource_type == Resource::TYPE[:script])
+        :javascript
+          droiuby.editor.getSession().setMode("ace/mode/ruby");
+
   .control-group
     = f.label :main_resource, "Set this as the main layout?"
     - checked =  (@resource.persisted? && @resource.main_layout?) ? 'checked' : 'unchecked'

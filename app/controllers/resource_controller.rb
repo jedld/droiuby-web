@@ -13,8 +13,8 @@ class ResourceController < ApplicationController
       @resource = app.resources.create(params[:resource])
       @resource.save!
       if params[:main_layout] == '1'
-        @app.main_layout_id = @resource.id
-        @app.save!
+        app.main_layout_id = @resource.id
+        app.save!
       end
       flash[:notice] = "resource saved"
     else

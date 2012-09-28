@@ -2,6 +2,7 @@ class ResourceController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:show]
   before_filter :load_app, :only => [:new, :list, :show]
+  before_filter :load_resource, :only => [:show]
 
   def new
     @resource = @app.resources.new
@@ -57,17 +58,24 @@ class ResourceController < ApplicationController
   end
 
   def show
-    resource = @app.resources.where(name: params[:resource_name]).first
-    if resource.is_script?
-      render :text=>resource.body, :content_type => "application/x-ruby"
-    elsif resource.is_template?
-      render :text=>resource.body, :content_type => "application/xml"
+    if @resource.is_script?
+      render :text=>@resource.body, :content_type => "application/x-ruby"
+    elsif @resource.is_template?
+      render :text=>@resource.body, :content_type => "application/xml"
     else
-      render :text=>resource.body, :content_type => "text/plain"
+      render :text=>@resource.body, :content_type => "text/plain"
     end
   end
 
 private
+
+  def load_resource
+    @resource = @app.resources.where(name: params[:resource_name]).first
+
+    Rails.logger.error @app.resources.inspect
+    @resource
+  end
+
   def load_app
     a = params[:id]
     app = App.find_by_id a

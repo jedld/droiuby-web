@@ -7,6 +7,8 @@
     %th
       Resource Type
     %th
+      Url
+    %th
       Manage
   - @app.resources.each do |r|
     %tr
@@ -14,6 +16,8 @@
         = r.name
       %td
         = r.resource_type_name
+      %td
+        = link_to(service_path_url(@app.name, resource_name: r.name),service_path_url(@app.name, resource_name: r.name))
       %td= link_to('Edit', edit_resource_path(r), class: 'btn btn-primary')
 
 

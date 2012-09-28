@@ -8,7 +8,7 @@ class App < ActiveRecord::Base
   has_many :resources
 
 
-  attr_accessible :name, :short_name, :description, :base_url, :main_layout
+  attr_accessible :name, :short_name, :description, :base_url, :main_layout, :is_public
 
   before_validation :convert_short_name
 

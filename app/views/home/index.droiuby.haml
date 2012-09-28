@@ -4,16 +4,13 @@
       %t{width: 'match', size: 20}= "Hi #{current_user.nickname}"
       %button{id: 'logout', "data-url" => destroy_user_session_path, "data-method" => 'delete' } Logout
     %t{width: 'match', size: 14, style: 'bold'} Welcome to the Droiuby App development platform
-    %t{width: 'match'} My Apps
-    %button{id: 'create_app', "data-url" => app_new_path} Create App
+    %t{width: 'match'} Your Apps
     %layout{type: 'scroll', width: 'match', height: 'match'}
       %layout{type: 'linear', width: 'match', height: 'wrap'}
         - current_user.apps.each do |a|
           %layout{type: 'linear', background_color: '#000000',orientation: 'horizontal', height: '1dip', width: 'match'}
           %layout{type: 'linear'}
-            %t{size: 14, color: '#9E2857'}= a.name
+            %t{size: 24, color: '#9E2857'}= a.name
             %t{size: 12}= a.description
-          %layout{type: 'linear', orientation: 'horizontal'}
             %button{id: 'view_xml', class: 'config-url', width: 'match', "data-url"=> config_url(name: a.name, format: 'xml')} Run
-            %button{id: 'manage_resource', width: 'match', "data-url" => show_resource_path(a)} Manage Resource
           %layout{type: 'linear', orientation: 'horizontal', height: '3dip', width: 'match'}

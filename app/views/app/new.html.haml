@@ -12,6 +12,9 @@
   %p.description
     = f.label :description, "Description"
     = f.text_area :description, class: 'input-large'
+  %p.is_public
+    = f.label :is_public, "Make app publicly accessible"
+    = f.check_box :is_public
   - if @app.persisted?
     %p.submit
       = f.submit "Update", id: 'submitform'

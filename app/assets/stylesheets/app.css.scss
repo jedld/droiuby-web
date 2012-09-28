@@ -6,9 +6,8 @@ input, textarea {
   width: 200px;
   background: #FFFFFF;
 }
-textarea {
-  width: 400px;
-  max-width: 400px;
+textarea#app_description {
+  width: 80%;
   height: 150px;
   line-height: 150%;
 }

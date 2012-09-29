@@ -1,30 +1,29 @@
-= link_to('manage resource', show_resource_path(@app), class: 'btn btn-inverse')
-%h2 Create Resource for #{@app.name}
+%ul.breadcrumb
+  %li
+    = link_to('manage resource', show_resource_path(@app))
+    %span.divider
+      ="/"
+  %li.active= "Create Resource for #{@app.name}"
 - action = @resource.persisted? ? 'update' : 'create'
-= form_for @resource, :url => { :action => action }, method: 'post', class: 'form' do |f|
+= form_for @resource, :url => { :action => action }, method: 'post', html: {class: 'form'} do |f|
   = f.hidden_field :app_id, value: @resource.app_id
   - if @resource.persisted?
     = f.hidden_field :id
   .control-group
-    = f.label :name, "Name"
-    .controls
-      = f.text_field :name, class: "input-large"
+    .controls.controls-row
+      .form-inline
+        = f.text_field :name, class: "input", placeholder: 'name'
+        = f.select :resource_type, options_for_select([["Layout", Resource::TYPE[:template]], ["Image", Resource::TYPE[:image]], ["Script", Resource::TYPE[:script]]]), class: 'resource-type-picker span1'
+        = f.label :main_resource, "Main layout?"
+        - checked =  (@resource.persisted? && @resource.main_layout?) ? 'checked' : 'unchecked'
+        %label.checkbox.inline
+          %input{type: 'radio', name: 'main_layout', id: 'option1', value: '1', :"#{checked}" => "" }
+          Yes
+        - checked =  !(@resource.persisted? && @resource.main_layout?) ? 'checked' : 'unchecked'
+        %label.checkbox.inline
+          %input{type: 'radio', name: 'main_layout', id: 'option2', value: '0', :"#{checked}" => ""}
+          No
   .control-group
-    = f.label :type, "Type"
-    .controls
-      = f.select :resource_type, options_for_select([["Layout", Resource::TYPE[:template]], ["Image", Resource::TYPE[:image]], ["Script", Resource::TYPE[:script]]]), class: 'resource-type-picker'
-  .control-group
-    = f.label :main_resource, "Set this as the main layout?"
-    - checked =  (@resource.persisted? && @resource.main_layout?) ? 'checked' : 'unchecked'
-    %label.checkbox.inline
-      %input{type: 'radio', name: 'main_layout', id: 'option1', value: '1', :"#{checked}" => "" }
-      Yes
-    - checked =  !(@resource.persisted? && @resource.main_layout?) ? 'checked' : 'unchecked'
-    %label.checkbox.inline
-      %input{type: 'radio', name: 'main_layout', id: 'option2', value: '0', :"#{checked}" => ""}
-      No
-  .control-group
-    = f.label :body, "Resource Body"
     .controls.editor
       = f.text_area :body, class: 'hidden editor'
       .div#editor.input-xxlarge
@@ -44,8 +43,8 @@
   - if @resource.persisted?
     .control-group
       .controls
-        = f.submit "Update", class: 'btn btn-primary'
+        = f.submit "Save", class: 'btn btn-primary'
   - else
     .control-group
       .controls
-        = f.submit "Submit", class: 'btn btn-primary'
+        = f.submit "Save", class: 'btn btn-primary'

@@ -21,7 +21,7 @@ class ResourceController < ApplicationController
     else
       flash[:error] = "Error loading resource or app"
     end
-    redirect_to show_resource_path(@resource.app)
+    redirect_to edit_resource_path(@resource)
   end
 
   def update

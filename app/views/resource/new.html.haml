@@ -35,12 +35,12 @@
         droiuby.editor.getSession().on('change', function(e) {
             $('textarea.editor').text(droiuby.editor.getValue());
         });
-      - if (@resource.resource_type == Resource::TYPE[:template])
-        :javascript
-          droiuby.editor.getSession().setMode("ace/mode/xml");
-      - elsif (@resource.resource_type == Resource::TYPE[:script])
+      - if (@resource.resource_type == Resource::TYPE[:script])
         :javascript
           droiuby.editor.getSession().setMode("ace/mode/ruby");
+      - else (@resource.resource_type == Resource::TYPE[:template])
+        :javascript
+          droiuby.editor.getSession().setMode("ace/mode/xml");
   - if @resource.persisted?
     .control-group
       .controls

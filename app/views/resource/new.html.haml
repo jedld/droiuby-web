@@ -1,3 +1,4 @@
+= link_to('manage resource', show_resource_path(@app), class: 'btn btn-inverse')
 %h2 Create Resource for #{@app.name}
 - action = @resource.persisted? ? 'update' : 'create'
 = form_for @resource, :url => { :action => action }, method: 'post', class: 'form' do |f|
@@ -12,6 +13,16 @@
     = f.label :type, "Type"
     .controls
       = f.select :resource_type, options_for_select([["Layout", Resource::TYPE[:template]], ["Image", Resource::TYPE[:image]], ["Script", Resource::TYPE[:script]]]), class: 'resource-type-picker'
+  .control-group
+    = f.label :main_resource, "Set this as the main layout?"
+    - checked =  (@resource.persisted? && @resource.main_layout?) ? 'checked' : 'unchecked'
+    %label.checkbox.inline
+      %input{type: 'radio', name: 'main_layout', id: 'option1', value: '1', :"#{checked}" => "" }
+      Yes
+    - checked =  !(@resource.persisted? && @resource.main_layout?) ? 'checked' : 'unchecked'
+    %label.checkbox.inline
+      %input{type: 'radio', name: 'main_layout', id: 'option2', value: '0', :"#{checked}" => ""}
+      No
   .control-group
     = f.label :body, "Resource Body"
     .controls.editor
@@ -30,17 +41,6 @@
       - elsif (@resource.resource_type == Resource::TYPE[:script])
         :javascript
           droiuby.editor.getSession().setMode("ace/mode/ruby");
-
-  .control-group
-    = f.label :main_resource, "Set this as the main layout?"
-    - checked =  (@resource.persisted? && @resource.main_layout?) ? 'checked' : 'unchecked'
-    %label.checkbox.inline
-      %input{type: 'radio', name: 'main_layout', id: 'option1', value: '1', :"#{checked}" => "" }
-      Yes
-    - checked =  !(@resource.persisted? && @resource.main_layout?) ? 'checked' : 'unchecked'
-    %label.checkbox.inline
-      %input{type: 'radio', name: 'main_layout', id: 'option2', value: '0', :"#{checked}" => ""}
-      No
   - if @resource.persisted?
     .control-group
       .controls

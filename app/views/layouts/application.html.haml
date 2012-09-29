@@ -14,8 +14,9 @@
     .row
       .span9
         .site_header
-          = image_tag asset_path('droiuby.png'), class: 'site_logo'
-          %h1 droiuby...
+          - unless current_user
+            = image_tag asset_path('droiuby.png'), class: 'site_logo'
+            %h1 droiuby...
         .row
           .span9
             - if flash[:notice]

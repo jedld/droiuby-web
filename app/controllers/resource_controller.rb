@@ -27,19 +27,31 @@ class ResourceController < ApplicationController
   def update
     app = App.find_by_id params[:resource][:app_id]
     if app && current_user.apps.include?(app)
-      @resource = app.resources.where(id: params[:resource][:id]).first
-      if @resource && @resource.update_attributes(params[:resource])
-        if params[:main_layout] == '1'
-          app.main_layout_id = @resource.id
-          app.save!
-          flash[:notice] = "resource #{@resource.name} updated and set as main layout"
-        else
-          flash[:notice] = "resource #{@resource.name} updated"
+      if (params[:resource][:id].blank?)
+        Resource.transaction do
+          @resource = app.resources.create(params[:resource])
+          @resource.save!
+          if params[:main_layout] == '1'
+            app.main_layout_id = @resource.id
+            app.save!
+          end
         end
-
-        redirect_to edit_resource_path(@resource)
       else
-        flash[:error] = "Unable to update resource"
+        @resource = app.resources.where(id: params[:resource][:id]).first
+        if @resource && @resource.update_attributes(params[:resource])
+          if params[:main_layout] == '1'
+            app.main_layout_id = @resource.id
+            app.save!
+            flash[:notice] = "resource #{@resource.name} updated and set as main layout"
+          else
+            flash[:notice] = "resource #{@resource.name} updated"
+          end
+        end
+      end
+
+      respond_to do |format|
+        format.json { render :json => {status: 'success', id: @resource.id, body: @resource.body} }
+        format.html { redirect_to edit_resource_path(@resource) }
       end
     end
   end
@@ -59,15 +71,15 @@ class ResourceController < ApplicationController
 
   def show
     if @resource.is_script?
-      render :text=>@resource.body, :content_type => "application/x-ruby"
+      render :text => @resource.body, :content_type => "application/x-ruby"
     elsif @resource.is_template?
-      render :text=>@resource.body, :content_type => "application/xml"
+      render :text => @resource.body, :content_type => "application/xml"
     else
-      render :text=>@resource.body, :content_type => "text/plain"
+      render :text => @resource.body, :content_type => "text/plain"
     end
   end
 
-private
+  private
 
   def load_resource
     @resource = @app.resources.where(name: params[:resource_name]).first

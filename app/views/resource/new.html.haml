@@ -1,13 +1,12 @@
 = render :partial=>'common/breadcrumb', locals: {paths: [{name: 'Home', link: home_index_path},{name: 'manage resource', link: show_resource_path(@app)}, |
    {name: "Create Resource for #{@app.name}"}]} |
-- action = @resource.persisted? ? 'update' : 'create'
-= form_for @resource, :url => { :action => action }, method: 'post', html: {class: 'form'} do |f|
+= form_for @resource, :url => { :action => :update }, method: 'post',  :remote => true, html: {class: 'form form-resource-update', "data-type" => :json} do |f|
   = f.hidden_field :app_id, value: @resource.app_id
-  - if @resource.persisted?
-    = f.hidden_field :id
+  = f.hidden_field :id
   .control-group
     .controls.controls-row
       .form-inline
+        = f.submit "Save", class: 'btn btn-primary save-app-button ', :"data-loading-text" => "Saving...", :disabled=>"disabled"
         = f.text_field :name, class: "input", placeholder: 'name'
         = f.select :resource_type, options_for_select([["Layout", Resource::TYPE[:template]], ["Image", Resource::TYPE[:image]], ["Script", Resource::TYPE[:script]]], @resource.resource_type), class: 'resource-type-picker span1'
         = f.label :main_resource, "Main layout?"
@@ -29,6 +28,10 @@
         droiuby.editor.setValue($('textarea.editor').text());
         droiuby.editor.getSession().on('change', function(e) {
             $('textarea.editor').text(droiuby.editor.getValue());
+
+            var button = $('.save-app-button');
+            button.addClass('btn-warning');
+            button.removeAttr('disabled');
         });
       - if (@resource.resource_type == Resource::TYPE[:script])
         :javascript
@@ -36,11 +39,3 @@
       - else (@resource.resource_type == Resource::TYPE[:template])
         :javascript
           droiuby.editor.getSession().setMode("ace/mode/xml");
-  - if @resource.persisted?
-    .control-group
-      .controls
-        = f.submit "Save", class: 'btn btn-primary'
-  - else
-    .control-group
-      .controls
-        = f.submit "Save", class: 'btn btn-primary'

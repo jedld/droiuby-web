@@ -1,4 +1,4 @@
-= render :partial=>'common/breadcrumb', locals: {paths: [{name: 'Home', link: home_index_path},{name: "Create new app"}]}
+= render :partial=>'common/breadcrumb', locals: {paths: [{name: "Create new app"}]}
 %h2 Create App
 - action = @app.persisted? ? 'update' : 'create'
 = form_for @app, :url => { :action => action }, class: 'form' do |f|

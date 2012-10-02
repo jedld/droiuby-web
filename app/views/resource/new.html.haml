@@ -1,4 +1,4 @@
-= render :partial=>'common/breadcrumb', locals: {paths: [{name: 'Home', link: home_index_path},{name: 'manage resource', link: show_resource_path(@app)}, |
+= render :partial=>'common/breadcrumb', locals: {paths: [{name: 'manage resource', link: show_resource_path(@app)}, |
    {name: "Create Resource for #{@app.name}"}]} |
 = form_for @resource, :url => { :action => :update }, method: 'post',  :remote => true, html: {class: 'form form-resource-update', "data-type" => :json} do |f|
   = f.hidden_field :app_id, value: @resource.app_id

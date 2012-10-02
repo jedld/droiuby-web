@@ -1,6 +1,6 @@
 class CustomFailure < Devise::FailureApp
 
-  def respond
-      redirect
-  end
+  #def respond
+  #    redirect
+  #end
 end

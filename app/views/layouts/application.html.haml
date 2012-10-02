@@ -12,32 +12,17 @@
 %body
   .container
     .row
-      .span9
+      .span11
         .site_header
           - unless current_user
             = image_tag asset_path('droiuby.png'), class: 'site_logo'
-            %h1 droiuby...
+            %h1 droiuby
         .row
-          .span9
-            - if flash[:notice]
-              .span9
-                .alert.alert-info= flash[:notice]
-            - if flash[:error]
-              .span9
-                .alert.alert-error= flash[:error]
-            .row
-              - if current_user
-                %ul.nav.nav-pills
-                  %li.active
-                    = link_to("Home", home_index_path)
-                  %li
-                    = link_to("Logout",destroy_user_session_path)
-
+          .span11
+            = bootstrap_flash
+            = yield
+            -unless current_user
               .row
                 .span9
-                  = yield
-                  -unless current_user
-                    .row
-                      .span9
-                        %a{href: "http://play.google.com/store/apps/details?id=com.droiuby.client"}
-                          %img{alt: "Android app on Google Play", src: "http://www.android.com/images/brand/android_app_on_play_logo_large.png"}
+                  %a{href: "http://play.google.com/store/apps/details?id=com.droiuby.client"}
+                  %img{alt: "Android app on Google Play", src: "http://www.android.com/images/brand/android_app_on_play_logo_large.png"}

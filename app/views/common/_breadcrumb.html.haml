@@ -1,0 +1,9 @@
+%ul.breadcrumb
+  - paths.each do |p|
+    - if paths.last == p
+      %li.active= p[:name]
+    - else
+      %li
+        = link_to(p[:name], p[:link])
+        %span.divider
+          ="/"

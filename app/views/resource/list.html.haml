@@ -1,3 +1,4 @@
+= render :partial=>'common/breadcrumb', locals: {paths: [{name: 'Home', link: home_index_path}, {name: "Resource for #{@app.name}"}]} |
 %h1= "Resources for #{@app.name}"
 = link_to "Add Resource", new_resource_path(@app),  class: 'btn'
 %table.table

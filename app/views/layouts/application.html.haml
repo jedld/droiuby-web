@@ -36,7 +36,8 @@
               .row
                 .span9
                   = yield
-                  .row
-                    .span9
-                      %a{href: "http://play.google.com/store/apps/details?id=com.droiuby.client"}
-                        %img{alt: "Android app on Google Play", src: "http://www.android.com/images/brand/android_app_on_play_logo_large.png"}
+                  -unless current_user
+                    .row
+                      .span9
+                        %a{href: "http://play.google.com/store/apps/details?id=com.droiuby.client"}
+                          %img{alt: "Android app on Google Play", src: "http://www.android.com/images/brand/android_app_on_play_logo_large.png"}

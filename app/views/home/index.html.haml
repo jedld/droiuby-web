@@ -1,3 +1,4 @@
+= render :partial=>'common/breadcrumb', locals: {paths: [{name: 'Home'}]}
 %h1
   Hi #{current_user.nickname}
 .welcome
@@ -9,19 +10,20 @@
 - if flash[:notice]
   %p.notice=flash[:notice]
 .actions.btn= link_to("Create App", app_new_path)
-%table.table
-  %thead
-    %tr
-      %th Name
-      %th Description
-      %th XML
-      %th Manage
-  - current_user.apps.each do |a|
-    %tr
-      %td= a.name
-      %td= a.description
-      %td= link_to('config xml',config_url(name: a.name, format: 'xml'))
-      %td
-        = link_to('info',app_info_path(a), class: 'btn')
-        = link_to('Edit', app_edit_show_path(a), class: 'btn btn-primary')
-        = link_to('manage resource', show_resource_path(a), class: 'btn btn-inverse')
+.span10
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Description
+        %th XML
+        %th Manage
+    - current_user.apps.each do |a|
+      %tr
+        %td= a.name
+        %td.description= a.description
+        %td= link_to('config xml',config_url(name: a.name, format: 'xml'))
+        %td
+          = link_to('info',app_info_path(a), class: 'btn')
+          = link_to('Edit', app_edit_show_path(a), class: 'btn btn-primary')
+          = link_to('manage resource', show_resource_path(a), class: 'btn btn-inverse')

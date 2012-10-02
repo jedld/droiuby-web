@@ -1,9 +1,5 @@
-%ul.breadcrumb
-  %li
-    = link_to('manage resource', show_resource_path(@app))
-    %span.divider
-      ="/"
-  %li.active= "Create Resource for #{@app.name}"
+= render :partial=>'common/breadcrumb', locals: {paths: [{name: 'Home', link: home_index_path},{name: 'manage resource', link: show_resource_path(@app)}, |
+   {name: "Create Resource for #{@app.name}"}]} |
 - action = @resource.persisted? ? 'update' : 'create'
 = form_for @resource, :url => { :action => action }, method: 'post', html: {class: 'form'} do |f|
   = f.hidden_field :app_id, value: @resource.app_id
@@ -13,7 +9,7 @@
     .controls.controls-row
       .form-inline
         = f.text_field :name, class: "input", placeholder: 'name'
-        = f.select :resource_type, options_for_select([["Layout", Resource::TYPE[:template]], ["Image", Resource::TYPE[:image]], ["Script", Resource::TYPE[:script]]]), class: 'resource-type-picker span1'
+        = f.select :resource_type, options_for_select([["Layout", Resource::TYPE[:template]], ["Image", Resource::TYPE[:image]], ["Script", Resource::TYPE[:script]]], @resource.resource_type), class: 'resource-type-picker span1'
         = f.label :main_resource, "Main layout?"
         - checked =  (@resource.persisted? && @resource.main_layout?) ? 'checked' : 'unchecked'
         %label.checkbox.inline

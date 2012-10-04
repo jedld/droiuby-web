@@ -13,6 +13,9 @@
   %p.description
     = f.label :description, "Description"
     = f.text_area :description, class: 'input-large'
+  %p.orientation
+    = f.label :orientation, "Screen Orientation"
+    = f.select :orientation, options_for_select([["None", "none"], ["Landscape", 'landscape'], ["Portrait", 'portrait'], ["Sensor Portrait", 'sensor_portrait'], ["Sensor Landscape", 'sensor_landscape']], @app.orientation)
   %p.is_public
     = f.label :is_public, "Make app publicly accessible"
     = f.check_box :is_public

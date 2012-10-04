@@ -33,6 +33,13 @@
             button.addClass('btn-warning');
             button.removeAttr('disabled');
         });
+        droiuby.editor.addCommand({
+            name: 'cmdSave',
+            bindKey: {linux: 'Ctrl-S', win: 'Ctrl-S',  mac: 'Command-S'},
+            exec: function(editor) {
+                $('input.save-app-button').click();
+            }
+        });
       - if (@resource.resource_type == Resource::TYPE[:script])
         :javascript
           droiuby.editor.getSession().setMode("ace/mode/ruby");

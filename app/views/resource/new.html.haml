@@ -18,13 +18,26 @@
         %label.checkbox.inline
           %input{type: 'radio', name: 'main_layout', id: 'option2', value: '0', :"#{checked}" => ""}
           No
+        -#.image-upload
+        -#  .control-group
+        -#    .fileupload.fileupload-new{:"data-provides"=>'fileupload'}
+        -#      .fileupload-new.thumbnail
+        -#        %img{src: ''}
+        -#      .fileupload-preview.fileupload-exists.thumbnail
+        -#      %div
+        -#        %span.btn.btn-file
+        -#          %span.fileupload-new Select Image
+        -#          %span.fileupload-exists Change
+        -#          %input{type: 'file'}
+        -#        %a.btn.fileupload-exists{href: '#', :'data-dismiss'=>'fileupload'} Remove
+
   .control-group
     .controls.editor
       = f.text_area :body, class: 'hidden editor'
       .div#editor.input-xxlarge
       :javascript
         droiuby.editor = ace.edit("editor");
-        droiuby.editor.setTheme("ace/theme/monokai");
+        droiuby.editor.setTheme("ace/theme/eclipse");
         droiuby.editor.setValue($('textarea.editor').text());
         droiuby.editor.getSession().on('change', function(e) {
             $('textarea.editor').text(droiuby.editor.getValue());

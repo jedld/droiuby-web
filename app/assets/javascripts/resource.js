@@ -31,4 +31,7 @@ $('form.form-resource-update').live('ajax:success', function(event, data, status
     button.attr('disabled','disabled');
 });
 
+$(function() {
+    $('.fileupload').fileupload();
+});
 

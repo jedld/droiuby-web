@@ -5,7 +5,7 @@ class App < ActiveRecord::Base
 
 
   belongs_to :user
-  has_many :resources
+  has_many :resources, :dependent => :destroy
 
 
   attr_accessible :name, :short_name, :description, :base_url, :main_layout, :is_public, :orientation

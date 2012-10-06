@@ -8,9 +8,9 @@ class Resource < ActiveRecord::Base
 
   before_validation :transform_name
 
-  #has_attached_file :image_resource, :default_url => ":custom_default_url"
+  has_attached_file :image_resource, :default_url => ":custom_default_url"
 
-  attr_accessible :app_id, :name, :resource_type, :body
+  attr_accessible :app_id, :name, :resource_type, :body, :image_resource
 
   belongs_to :app
 

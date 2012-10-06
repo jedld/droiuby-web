@@ -1,6 +1,6 @@
 = render :partial=>'common/breadcrumb', locals: {paths: [{name: 'manage resource', link: show_resource_path(@app)}, |
    {name: "Create Resource for #{@app.name}"}]} |
-= form_for @resource, :url => { :action => :update }, method: 'post',  :remote => true, html: {class: 'form form-resource-update', "data-type" => :json} do |f|
+= form_for @resource, :url => { :action => :update }, method: 'post',  :remote => true, html: {:multipart => true, class: 'form form-resource-update', "data-type" => :json} do |f|
   = f.hidden_field :app_id, value: @resource.app_id
   = f.hidden_field :id
   .control-group
@@ -9,8 +9,9 @@
         = f.submit "Save", class: 'btn btn-primary save-app-button ', :"data-loading-text" => "Saving...", :disabled=>"disabled"
         = f.text_field :name, class: "input", placeholder: 'name'
         = f.select :resource_type, options_for_select([["Layout", Resource::TYPE[:template]], ["Image", Resource::TYPE[:image]], ["Script", Resource::TYPE[:script]]], @resource.resource_type), class: 'resource-type-picker span1'
-        = f.label :main_resource, "Main layout?"
-        - checked =  (@resource.persisted? && @resource.main_layout?) ? 'checked' : 'unchecked'
+        %span.layout-only{class: (@resource.resource_type==Resource::TYPE[:template]) ? '' : 'hidden' }
+          = f.label :main_resource, "Main layout?"
+          - checked =  (@resource.persisted? && @resource.main_layout?) ? 'checked' : 'unchecked'
         %label.checkbox.inline
           %input{type: 'radio', name: 'main_layout', id: 'option1', value: '1', :"#{checked}" => "" }
           Yes
@@ -18,20 +19,23 @@
         %label.checkbox.inline
           %input{type: 'radio', name: 'main_layout', id: 'option2', value: '0', :"#{checked}" => ""}
           No
-        -#.image-upload
-        -#  .control-group
-        -#    .fileupload.fileupload-new{:"data-provides"=>'fileupload'}
-        -#      .fileupload-new.thumbnail
-        -#        %img{src: ''}
-        -#      .fileupload-preview.fileupload-exists.thumbnail
-        -#      %div
-        -#        %span.btn.btn-file
-        -#          %span.fileupload-new Select Image
-        -#          %span.fileupload-exists Change
-        -#          %input{type: 'file'}
-        -#        %a.btn.fileupload-exists{href: '#', :'data-dismiss'=>'fileupload'} Remove
+        .control-group.image-upload.hidden
+          .controls
+            .fileupload.fileupload-new{:"data-provides"=>'fileupload'}
+              .fileupload-new.thumbnail.image-upload
+                - if @resource.image_resource?
+                  %img{src: @resource.image_resource.url }
+                - else
+                  %img{src: ''}
+              .fileupload-preview.fileupload-exists.thumbnail.image-upload
+              %div
+                %span.btn.btn-file
+                  %span.fileupload-new Select Image
+                  %span.fileupload-exists Change
+                  %input{type: 'file'}
+                %a.btn.fileupload-exists{href: '#', :'data-dismiss'=>'fileupload'} Remove
 
-  .control-group
+  .control-group.resource-editor
     .controls.editor
       = f.text_area :body, class: 'hidden editor'
       .div#editor.input-xxlarge
@@ -46,7 +50,7 @@
             button.addClass('btn-warning');
             button.removeAttr('disabled');
         });
-        droiuby.editor.addCommand({
+        droiuby.editor.commands.addCommand({
             name: 'cmdSave',
             bindKey: {linux: 'Ctrl-S', win: 'Ctrl-S',  mac: 'Command-S'},
             exec: function(editor) {

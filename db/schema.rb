@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121004050423) do
+ActiveRecord::Schema.define(:version => 20121005235811) do
 
   create_table "app_scripts", :force => true do |t|
     t.integer  "app_id"
@@ -56,8 +56,9 @@ ActiveRecord::Schema.define(:version => 20121004050423) do
     t.integer  "resource_type"
     t.string   "resource_url"
     t.text     "body"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.string   "image_resource_file_name"
   end
 
   create_table "users", :force => true do |t|

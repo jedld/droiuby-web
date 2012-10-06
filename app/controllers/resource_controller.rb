@@ -6,6 +6,7 @@ class ResourceController < ApplicationController
 
   def new
     @resource = @app.resources.new
+    @resource.resource_type = Resource::TYPE[:template]
   end
 
   def create

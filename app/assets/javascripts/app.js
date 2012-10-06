@@ -21,7 +21,7 @@ var update_qrcode = function() {
 
 $(document).ready(function() {
     var qrcode_element = $('.qrcode');
-    if (qrcode_element) {
+    if (qrcode_element.length!=0) {
         qrcode_element.html(create_qrcode(qrcode_element.data('url')));
     }
 });

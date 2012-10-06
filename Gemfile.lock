@@ -191,6 +191,7 @@ DEPENDENCIES
   devise
   haml-rails
   jquery-rails
+  less
   paperclip
   pg
   rails (= 3.2.8)

@@ -16,7 +16,7 @@ $('select#resource_resource_type').live('change', function (e) {
         $('form div.resource-editor').removeClass('hidden');
         droiuby.editor.getSession().setMode("ace/mode/xml");
     } else
-    if (select.val()=== '1') {
+    if (select.val() === '1') {
         $('form div.image-upload').removeClass('hidden');
         $('form div.resource-editor').addClass('hidden');
         main_layout_select.addClass('hidden');
@@ -27,7 +27,7 @@ $('select#resource_resource_type').live('change', function (e) {
 
 $('form.form-resource-update').live('ajax:beforeSend', function () {
     var button = $('.save-app-button');
-    button.attr('disabled','disabled');
+    button.attr('disabled', 'disabled');
 });
 
 $('form.form-resource-update').live('ajax:failure', function() {
@@ -38,17 +38,21 @@ $('form.form-resource-update').live('ajax:failure', function() {
 $('form.form-resource-update').live('ajax:success', function(event, data, status, xhr) {
     var button = $('.save-app-button');
     button.removeClass('btn-warning');
-    button.attr('disabled','disabled');
+    button.attr('disabled', 'disabled');
 });
 
 $(document).ready(function() {
     $('.fileupload').fileupload({'uploadtype' : 'image', name: 'resource[image_resource]'});
     $('#destroy-resource').on('click', function() {
+
+        var button = $(this);
         $.ajax(
-            {url: $(this).data('url')}
-            ).done(function() {
-            $('#delete-confirm').modal('hide')
-        })
+            {url: button.data('url'),
+                type: 'POST'}
+        ).done(function() {
+                $(button.data('modal')).modal('hide');
+                $(button.data('target')).remove();
+            })
     })
 });
 

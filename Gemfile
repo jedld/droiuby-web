@@ -5,8 +5,7 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'sqlite3'
-gem 'pg'
+gem 'sqlite3'
 gem 'devise'
 gem 'rails_admin'
 gem "cancan"
@@ -26,6 +25,10 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'less'
+end
+
+group :production do
+  gem 'pg'
 end
 
 group :test do

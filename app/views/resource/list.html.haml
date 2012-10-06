@@ -12,7 +12,7 @@
     %th
       Manage
   - @app.resources.each do |r|
-    %tr
+    %tr{id: "row-resource-#{r.id}"}
       %td
         = r.name
       %td
@@ -22,7 +22,7 @@
       %td
         = link_to('Edit', edit_resource_path(r), class: 'btn btn-primary')
         = link_to('Delete', '#', class: "btn btn-danger",  :'data-toggle'=>"modal", href: "#delete_confirm_#{r.id}")
-        .modal.hide.fade{id: "#delete_confirm_#{r.id}"}
+        .modal.hide.fade{id: "delete_confirm_#{r.id}"}
           .modal-header
             %button.close{type: 'button', :'data-disimiss'=>"modal"} x
             %h3 Modal Header
@@ -31,7 +31,7 @@
               Confirm delete?
           .modal-footer
             %a.btn{href: '#', :'data-dismiss'=>'modal'} Close
-            %a.btn.btn-danger#destroy-resource{href: '#', :'data-url'=>destroy_resource_path(r.id)} Delete
+            %a.btn.btn-danger#destroy-resource{href: '#', :'data-url'=>destroy_resource_path(r.id), :'data-modal'=>"#delete_confirm_#{r.id}", :'data-target'=>"#row-resource-#{r.id}"} Delete
 
 
 

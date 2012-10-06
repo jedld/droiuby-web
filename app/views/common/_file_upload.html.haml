@@ -1,0 +1,14 @@
+.controls
+  .fileupload.fileupload-new{:"data-provides"=>'fileupload'}
+    .fileupload-new.thumbnail.image-upload
+      - if resource.image_resource?
+        %img{src: resource.image_resource.url }
+      - else
+        %img{src: ''}
+    .fileupload-preview.fileupload-exists.thumbnail.image-upload
+    %div
+      %span.btn.btn-file
+        %span.fileupload-new Select Image
+        %span.fileupload-exists Change
+        %input{type: 'file'}
+      %a.btn.fileupload-exists{href: '#', :'data-dismiss'=>'fileupload'} Remove

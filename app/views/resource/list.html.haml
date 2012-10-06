@@ -19,6 +19,22 @@
         = r.resource_type_name
       %td
         = link_to(service_path_url(@app.name, resource_name: r.name),service_path_url(@app.name, resource_name: r.name))
-      %td= link_to('Edit', edit_resource_path(r), class: 'btn btn-primary')
+      %td
+        = link_to('Edit', edit_resource_path(r), class: 'btn btn-primary')
+        = link_to('Delete', '#', class: "btn btn-danger",  :'data-toggle'=>"modal", href: "#delete_confirm_#{r.id}")
+        .modal.hide.fade{id: "#delete_confirm_#{r.id}"}
+          .modal-header
+            %button.close{type: 'button', :'data-disimiss'=>"modal"} x
+            %h3 Modal Header
+          .modal-body
+            %p
+              Confirm delete?
+          .modal-footer
+            %a.btn{href: '#', :'data-dismiss'=>'modal'} Close
+            %a.btn.btn-danger#destroy-resource{href: '#', :'data-url'=>destroy_resource_path(r.id)} Delete
+
+
+
+
 
 

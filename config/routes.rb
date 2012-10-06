@@ -19,6 +19,7 @@ DroiubyWeb::Application.routes.draw do
   get "resource/edit/:id" => "resource#show_for_update", :as => "edit_resource"
   post "resource/update/:id" => "resource#update", :as => 'update_resource'
   post "resource/create" => "resource#create"
+  post "resource/destory/:id" => "resource#destroy", :as=>'destroy_resource'
 
 
   # The priority is based upon order of creation:

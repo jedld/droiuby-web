@@ -39,6 +39,10 @@ class Resource < ActiveRecord::Base
     resource_type == TYPE[:script]
   end
 
+  def is_image?
+    resource_type == TYPE[:image]
+  end
+
   protected
 
   def transform_name

@@ -25,6 +25,12 @@ class ResourceController < ApplicationController
     redirect_to edit_resource_path(@resource)
   end
 
+  def destroy
+    @resource = Resource.find params[:id]
+    @resource.destroy
+    render :json=>{status: 'ok'}
+  end
+
   def update
     app = App.find_by_id params[:resource][:app_id]
     if app && current_user.apps.include?(app)
@@ -75,6 +81,8 @@ class ResourceController < ApplicationController
       render :text => @resource.body, :content_type => "application/x-ruby"
     elsif @resource.is_template?
       render :text => @resource.body, :content_type => "application/xml"
+    elsif @resource.is_image?
+      send_file @resource.image_resource.path, :type=>"image/png"
     else
       render :text => @resource.body, :content_type => "text/plain"
     end

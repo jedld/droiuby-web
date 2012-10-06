@@ -5,7 +5,9 @@ var droiuby = {
 $('select#resource_resource_type').live('change', function (e) {
     var select = $(this);
     var button = $('.save-app-button');
+    var main_layout_select = $('span.layout-only');
     $('form div.image-upload').addClass('hidden');
+    main_layout_select.removeClass('hidden');
     if (select.val() === '2') {
         $('form div.resource-editor').removeClass('hidden');
         droiuby.editor.getSession().setMode("ace/mode/ruby");
@@ -17,6 +19,7 @@ $('select#resource_resource_type').live('change', function (e) {
     if (select.val()=== '1') {
         $('form div.image-upload').removeClass('hidden');
         $('form div.resource-editor').addClass('hidden');
+        main_layout_select.addClass('hidden');
         button.removeAttr('disabled');
     }
 });
@@ -40,5 +43,14 @@ $('form.form-resource-update').live('ajax:success', function(event, data, status
 
 $(document).ready(function() {
     $('.fileupload').fileupload({'uploadtype' : 'image', name: 'resource[image_resource]'});
+    $('#destroy-resource').on('click', function() {
+        $.ajax(
+            {url: $(this).data('url')}
+            ).done(function() {
+            $('#delete-confirm').modal('hide')
+        })
+    })
 });
+
+
 

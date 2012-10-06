@@ -1,0 +1,27 @@
+.controls.editor
+  = f.text_area :body, class: 'hidden editor'
+  .div#editor.input-xxlarge
+  :javascript
+    droiuby.editor = ace.edit("editor");
+    droiuby.editor.setTheme("ace/theme/eclipse");
+    droiuby.editor.setValue($('textarea.editor').text());
+    droiuby.editor.getSession().on('change', function(e) {
+        $('textarea.editor').text(droiuby.editor.getValue());
+
+        var button = $('.save-app-button');
+        button.addClass('btn-warning');
+        button.removeAttr('disabled');
+    });
+    droiuby.editor.commands.addCommand({
+        name: 'cmdSave',
+        bindKey: {linux: 'Ctrl-S', win: 'Ctrl-S',  mac: 'Command-S'},
+        exec: function(editor) {
+            $('input.save-app-button').click();
+        }
+    });
+  - if (@resource.resource_type == Resource::TYPE[:script])
+    :javascript
+      droiuby.editor.getSession().setMode("ace/mode/ruby");
+  - else (@resource.resource_type == Resource::TYPE[:template])
+    :javascript
+      droiuby.editor.getSession().setMode("ace/mode/xml");

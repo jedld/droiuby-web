@@ -43,6 +43,10 @@ $('form.form-resource-update').live('ajax:success', function(event, data, status
 
 $(document).ready(function() {
     $('.fileupload').fileupload({'uploadtype' : 'image', name: 'resource[image_resource]'});
+    $('input#image-resource').on('change', function() {
+        var button = $('.save-app-button');
+        button.removeAttr('disabled');
+    });
     $('#destroy-resource').on('click', function() {
 
         var button = $(this);

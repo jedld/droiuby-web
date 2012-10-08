@@ -12,6 +12,7 @@ gem "paperclip"
 gem "haml-rails"
 gem 'thin'
 gem "twitter-bootstrap-rails"
+gem 'aws-s3'
 
 # Gems used only for assets and not required
 # in production environments by default.

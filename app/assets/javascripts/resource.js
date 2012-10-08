@@ -11,12 +11,10 @@ $('select#resource_resource_type').live('change', function (e) {
     if (select.val() === '2') {
         $('form div.resource-editor').removeClass('hidden');
         droiuby.editor.getSession().setMode("ace/mode/ruby");
-    } else
-    if (select.val() === '0') {
+    } else if (select.val() === '0') {
         $('form div.resource-editor').removeClass('hidden');
         droiuby.editor.getSession().setMode("ace/mode/xml");
-    } else
-    if (select.val() === '1') {
+    } else if (select.val() === '1') {
         $('form div.image-upload').removeClass('hidden');
         $('form div.resource-editor').addClass('hidden');
         main_layout_select.addClass('hidden');
@@ -30,29 +28,29 @@ $('form.form-resource-update').live('ajax:beforeSend', function () {
     button.attr('disabled', 'disabled');
 });
 
-$('form.form-resource-update').live('ajax:failure', function() {
+$('form.form-resource-update').live('ajax:failure', function () {
     var button = $('.save-app-button');
     button.removeAttr('disabled');
 });
 
-$('form.form-resource-update').live('ajax:success', function(event, data, status, xhr) {
+$('form.form-resource-update').live('ajax:success', function (event, data, status, xhr) {
     var button = $('.save-app-button');
     button.removeClass('btn-warning');
     button.attr('disabled', 'disabled');
 });
 
-$(document).ready(function() {
-    $('.fileupload').fileupload({'uploadtype' : 'image', name: 'resource[image_resource]'});
-    $('input#image-resource').on('change', function() {
+$(document).ready(function () {
+    $('.fileupload').fileupload({'uploadtype':'image', name:'resource[image_resource]'});
+    $('input#image-resource').on('change', function () {
         var button = $('.save-app-button');
         button.removeAttr('disabled');
     });
-    $('.destroy-resource').on('click', function() {
-          var button = $(this);
+    $('.destroy-resource').on('click', function () {
+        var button = $(this);
         $.ajax(
-            {url: button.data('url'),
-                type: 'POST'}
-        ).done(function() {
+            {url:button.data('url'),
+                type:'POST'}
+        ).done(function () {
                 $(button.data('modal')).modal('hide');
                 $(button.data('target')).remove();
             })

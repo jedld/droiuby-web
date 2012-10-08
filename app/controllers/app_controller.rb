@@ -33,6 +33,11 @@ class AppController < ApplicationController
 
   end
 
+  def index
+    page = params[:page] || 1
+    @apps = App.public.paginate(:page => page).order('id DESC')
+  end
+
   def create
     @app = App.new(params[:app])
     @app.user = current_user

@@ -1,8 +1,7 @@
 = render :partial=>'common/breadcrumb', locals: {paths: []}
 %h1
   Hi #{current_user.nickname}
-.welcome
-  Welcome to the Droiuby App development platform
+= link_to("Explore Apps", app_index_path)
 %p.heading
   My Apps
 - if flash[:error]

@@ -14,6 +14,7 @@ gem 'thin'
 gem "twitter-bootstrap-rails"
 gem 'aws-s3'
 gem 'aws-sdk'
+gem 'will_paginate'
 
 # Gems used only for assets and not required
 # in production environments by default.

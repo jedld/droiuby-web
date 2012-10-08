@@ -1,0 +1,17 @@
+= render :partial=>'common/breadcrumb', locals: {paths: []}
+.span10
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Description
+        %th XML
+        %th Manage
+    - @apps.each do |a|
+      %tr
+        %td= a.name
+        %td.description= a.description
+        %td= link_to('config xml',config_url(name: a.name, format: 'xml'))
+        %td
+          = link_to('info',app_info_path(a), class: 'btn')
+= will_paginate @apps

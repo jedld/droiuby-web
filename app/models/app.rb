@@ -3,10 +3,10 @@ class App < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_uniqueness_of :short_name
 
-
   belongs_to :user
   has_many :resources, :dependent => :destroy
 
+  scope :public, where(:is_public => true)
 
   attr_accessible :name, :short_name, :description, :base_url, :main_layout, :is_public, :orientation
 

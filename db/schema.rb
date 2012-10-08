@@ -55,9 +55,9 @@ ActiveRecord::Schema.define(:version => 20121005235811) do
     t.integer  "app_id"
     t.integer  "resource_type"
     t.string   "resource_url"
-    t.text     "body"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
+    t.text     "body"
     t.string   "image_resource_file_name"
   end
 

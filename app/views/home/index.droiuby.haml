@@ -1,11 +1,12 @@
 %activity{controller: asset_path('home.rb')}
   %layout{type: 'linear', width: 'match', height: 'match'}
-    %layout{type: 'horizontal', width: 'match', height: 'wrap'}
-      %t{width: 'match', size: 20}= "Hi #{current_user.nickname}"
-      %button{id: 'logout', class: 'droiuby-link', "data-url" => destroy_user_session_path, "data-method" => 'delete' } Logout
+    %layout{type: 'linear', orientation: 'horizontal', width: 'match', height: 'wrap'}
+      %t{width: 'match', size: 20, weight: '1'}= "Hi #{current_user.nickname}"
+      %button{id: 'logout', class: 'droiuby-link', weight: '0', "data-url" => destroy_user_session_path, "data-method" => 'delete' } Logout
     %t{width: 'match', size: 14, style: 'bold'} Welcome to the Droiuby App development platform
+    %layout{type: 'linear', orientation: 'horizontal', gravity: 'center', width: 'match', height: 'wrap'}
+      %button{id: 'Explore', width: 'wrap', class: 'droiuby-link','data-url' => app_index_path} Explore
     %t{width: 'match'} Your Apps
-    %button{id: 'Explore', width: 'wrap', class: 'droiuby-link','data-url' => app_index_path} Explore
     %layout{type: 'scroll', width: 'match', height: 'match'}
       %layout{type: 'linear', width: 'match', height: 'wrap'}
         - current_user.apps.each do |a|

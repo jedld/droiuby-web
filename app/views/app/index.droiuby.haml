@@ -1,8 +1,5 @@
 %activity{controller: asset_path('home.rb')}
   %layout{type: 'linear', width: 'match', height: 'match'}
-    %layout{type: 'horizontal', width: 'match', height: 'wrap'}
-      %t{width: 'match', size: 20}= "Explore Applications"
-      %button{id: 'logout', "data-url" => destroy_user_session_path, "data-method" => 'delete' } Logout
     %t{width: 'match', size: 25} Browse Applications
     %layout{type: 'linear', background_color: '#000000',orientation: 'horizontal', height: '2dip', width: 'match'}
     %layout{type: 'scroll', width: 'match', height: 'match'}
@@ -12,5 +9,5 @@
           %layout{type: 'linear'}
             %t{size: 24, color: '#9E2857'}= a.name
             %t{size: 12}= a.description
-            %button{id: 'view_xml', class: 'config-url', width: 'match', "data-url"=> config_url(name: a.name, format: 'xml')} Run
+            %button{id: 'view_xml', class: 'droiuby-link-app', width: 'match', "data-url"=> config_url(name: a.name, format: 'xml')} Run
           %layout{type: 'linear', orientation: 'horizontal', height: '3dip', width: 'match'}

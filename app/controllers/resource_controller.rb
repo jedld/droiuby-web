@@ -82,7 +82,7 @@ class ResourceController < ApplicationController
     elsif @resource.is_template?
       render :text => @resource.body, :content_type => "application/xml"
     elsif @resource.is_image?
-      send_file @resource.image_resource.path, :type=>"image/png"
+      redirect_to @resource.image_resource.url, :type=>"image/png"
     else
       render :text => @resource.body, :content_type => "text/plain"
     end

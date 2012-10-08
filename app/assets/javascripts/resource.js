@@ -47,9 +47,8 @@ $(document).ready(function() {
         var button = $('.save-app-button');
         button.removeAttr('disabled');
     });
-    $('#destroy-resource').on('click', function() {
-
-        var button = $(this);
+    $('.destroy-resource').on('click', function() {
+          var button = $(this);
         $.ajax(
             {url: button.data('url'),
                 type: 'POST'}

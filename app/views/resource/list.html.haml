@@ -31,7 +31,7 @@
               Confirm delete?
           .modal-footer
             %a.btn{href: '#', :'data-dismiss'=>'modal'} Close
-            %a.btn.btn-danger#destroy-resource{href: '#', :'data-url'=>destroy_resource_path(r.id), :'data-modal'=>"#delete_confirm_#{r.id}", :'data-target'=>"#row-resource-#{r.id}"} Delete
+            %a.btn.btn-danger#destroy-resource.destroy-resource{href: '#', :'data-url'=>destroy_resource_path(r.id), :'data-modal'=>"#delete_confirm_#{r.id}", :'data-target'=>"#row-resource-#{r.id}"} Delete
 
 
 

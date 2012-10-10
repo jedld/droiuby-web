@@ -3,6 +3,7 @@
     %layout#login_form{type: 'linear', width: 'match', height: 'match', 'data-method' => 'post', 'data-url' => session_path(resource_name)}
       %layout{type: 'linear', width: 'match', height: 'wrap'}
         %img{src: '@drawable:droiuby', g: 'center', width: '200dip', height: '200dip'}
+      %button{id: 'Explore', width: 'wrap', g: 'center', class: 'droiuby-link-activity','data-url' => app_index_path, background_color: '#00FFFFFF'} Explore
       %t{size: 18} Sign in
       %input{visibility: 'hidden', name: 'authenticity_token', value: form_authenticity_token}
       %t Login

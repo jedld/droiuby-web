@@ -1,7 +1,7 @@
 def on_create
   V('.droiuby-link-activity').each do |view|
     view.on(:click) { |v|
-      render v.data('url')
+      render v.data('url', activity: true)
     }
   end
   V('.droiuby-link').each do |view|

@@ -5,6 +5,7 @@ class App < ActiveRecord::Base
 
   belongs_to :user
   has_many :resources, :dependent => :destroy
+  has_many :app_assets, :dependent => :destroy
 
   scope :public, where(:is_public => true)
 

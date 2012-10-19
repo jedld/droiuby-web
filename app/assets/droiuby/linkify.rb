@@ -1,5 +1,6 @@
-class linkify < Droiuby::Plugins
-  def on_page_load
+class Linkify < Droiuby::Plugins
+  def after_bootstrap
+    puts "starting linkify"
     V('.droiuby-link-activity').each do |view|
       view.on(:click) { |v|
         render v.data('url'), activity: true

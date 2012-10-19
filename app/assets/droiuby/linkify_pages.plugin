@@ -1,4 +1,4 @@
-class Linkify.plu < Droiuby::Plugins
+class LinkifyPages < Droiuby::Plugins
   def after_bootstrap
     puts "starting linkify"
     V('.droiuby-link-activity').each do |view|

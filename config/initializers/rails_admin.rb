@@ -78,27 +78,27 @@ RailsAdmin.config do |config|
   # Your model's configuration, to help you get started:
 
   # All fields marked as 'hidden' won't be shown anywhere in the rails_admin unless you mark them as visible. (visible(true))
-
-  config.model App do
-     # Found associations:
-
-    edit do
-      configure :user do
-        visible false
-      end
-
-      field :user_id, :hidden do
-        visible true
-        default_value do
-          bindings[:view]._current_user.id
-        end
-      end
-     field :name, :string
-     field :description, :string
-     field :base_url, :string
-     field :main_layout, :string
-    end
-  end
+  #
+  #config.model App do
+  #   # Found associations:
+  #
+  #  edit do
+  #    configure :user do
+  #      visible false
+  #    end
+  #
+  #    field :user_id, :hidden do
+  #      visible true
+  #      default_value do
+  #        bindings[:view]._current_user.id
+  #      end
+  #    end
+  #   field :name, :string
+  #   field :description, :string
+  #   field :base_url, :string
+  #   field :main_layout, :string
+  #  end
+  #end
   # config.model AppScript do
   #   # Found associations:
   #     configure :app, :belongs_to_association   #   # Found columns:

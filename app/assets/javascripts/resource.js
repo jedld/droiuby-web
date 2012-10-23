@@ -37,6 +37,7 @@ $('form.form-resource-update').live('ajax:success', function (event, data, statu
     var button = $('.save-app-button');
     button.removeClass('btn-warning');
     button.attr('disabled', 'disabled');
+    $('input#resource_id').val(data['id']);
 });
 
 $(document).ready(function () {

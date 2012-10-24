@@ -1,5 +1,5 @@
 class App < ActiveRecord::Base
-  validates_presence_of :name
+  validates_presence_of :name, :short_name
   validates_uniqueness_of :name
   validates_uniqueness_of :short_name
 

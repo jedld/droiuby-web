@@ -21,6 +21,7 @@ DroiubyWeb::Application.routes.draw do
   post "resource/update/:id" => "resource#update", :as => 'update_resource'
   post "resource/create" => "resource#create"
   post "resource/destory/:id" => "resource#destroy", :as=>'destroy_resource'
+  post "app_asset" => "app#update_asset", :as => 'update_asset'
 
 
   # The priority is based upon order of creation:

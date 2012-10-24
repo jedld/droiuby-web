@@ -1,0 +1,11 @@
+%h2 Application Assets
+%table.table
+  %thead
+    %tr
+      %th asset uri
+      %th version
+      %th type
+      %th
+  %tbody
+    - @app.app_assets.each do |asset|
+      = render partial: 'app_assets/form', locals: {app_asset: asset, app: @app}

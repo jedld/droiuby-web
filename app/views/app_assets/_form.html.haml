@@ -1,0 +1,15 @@
+%tr.asset{:"data-id" => @app_asset.id}
+  = form_for app_asset, :url => update_asset_path(app_id: app.id), method: 'post',  :remote => true, html: { class: 'form form-app-asset-update', "data-type" => :json} do |f|
+    %td
+      - if app_asset.persisted?
+        = f.hidden_field :id, value: app_asset.id
+      = f.text_field :uri
+    %td
+      = f.text_field :version
+    %td
+      = f.select :asset_type, options_for_select([["script", 'script'], ["image", 'image']])
+    %td
+      - if app_asset.persisted?
+        = f.submit "Update", id: 'submitform', class: '.save-asset-button'
+      -else
+        = f.submit "Create", id: 'submitform', class: '.save-asset-button'

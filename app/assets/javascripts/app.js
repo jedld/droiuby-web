@@ -25,3 +25,15 @@ $(document).ready(function() {
         qrcode_element.html(create_qrcode(qrcode_element.data('url')));
     }
 });
+
+$('form.form-app-asset-update').live('ajax:beforeSend', function () {
+
+});
+
+$('form.form-app-asset-update').live('ajax:failure', function () {
+
+});
+
+$('form.form-app-asset-update').live('ajax:success', function (event, data, status, xhr) {
+    $('#asset_list_section').html(data['partial'])
+});

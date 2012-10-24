@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(:version => 20121024042442) do
     t.string   "version"
   end
 
+  create_table "app_attributes", :force => true do |t|
+    t.integer  "app_id"
+    t.string   "name"
+    t.string   "value"
+    t.integer  "data_type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "app_scripts", :force => true do |t|
     t.integer  "app_id"
     t.string   "name"
@@ -44,6 +53,8 @@ ActiveRecord::Schema.define(:version => 20121024042442) do
     t.string   "short_name"
     t.boolean  "is_public"
     t.string   "orientation",             :default => "none"
+    t.integer  "app_type",                :default => 0
+    t.string   "loading_image_file_name"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -64,9 +75,9 @@ ActiveRecord::Schema.define(:version => 20121024042442) do
     t.integer  "app_id"
     t.integer  "resource_type"
     t.string   "resource_url"
+    t.text     "body"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
-    t.text     "body"
     t.string   "image_resource_file_name"
   end
 
@@ -86,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20121024042442) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "website"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

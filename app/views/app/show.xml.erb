@@ -5,4 +5,9 @@
     <base_url><%=  "http://#{request.host_with_port}/service/#{@app.short_name}/" %></base_url>
     <orientation><%= @app.orientation %></orientation>
     <main><%= @app.main_layout %></main>
+    <assets>
+        <%- @app.app_assets.each do |asset| %>
+            <resource name="<%= asset.uri %>" type="<%= asset.asset_type %>"/>
+        <%- end %>
+    </assets>
 </app_descriptor>

@@ -17,11 +17,14 @@
         %th Description
         %th XML
         %th Manage
-    - current_user.apps.each do |a|
+    - current_user.apps.order("short_name").each do |a|
       %tr
-        %td= a.name
+        %td= "#{a.short_name} (#{a.name})"
         %td.description= a.description
-        %td= link_to('config xml',config_url(name: a.name, format: 'xml'))
+        - if a.short_name
+          %td= link_to('config xml',config_url(short_name: a.short_name, format: 'xml'))
+        - else
+          %td
         %td
           = link_to('info',app_info_path(a), class: 'btn')
           = link_to('Edit', app_edit_show_path(a), class: 'btn btn-primary')

@@ -9,7 +9,7 @@ DroiubyWeb::Application.routes.draw do
   get "app/index" => "app#index", :as => 'app_index'
   get "droiuby" => "home#droiuby"
   get "app/new" => "app#new"
-  get "app/config/:name" => "app#show", :as => 'config'
+  get "app/config/:short_name" => "app#show", :as => 'config'
   post "app/create" => "app#create"
   get "app/info/:id" => "app#info", :as => 'app_info'
   get "app/show/:id" => "app#edit_show", :as => 'app_edit_show'

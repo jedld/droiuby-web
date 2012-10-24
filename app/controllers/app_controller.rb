@@ -5,7 +5,7 @@ class AppController < ApplicationController
   layout :false, :only => :show
 
   def show
-    name = params[:name]
+    name = params[:short_name]
     @app = App.find_by_short_name name
     respond_to do |format|
       format.xml # index.xml.builder

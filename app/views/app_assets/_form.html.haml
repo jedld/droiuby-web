@@ -7,7 +7,7 @@
     %td
       = f.text_field :version
     %td
-      = f.select :asset_type, options_for_select([["script", 'script'], ["image", 'image']])
+      = f.select :asset_type, options_for_select([["script",  0], ["image", 1]], app_asset.asset_type)
     %td
       - if app_asset.persisted?
         = f.submit "Update", id: 'submitform', class: '.save-asset-button'

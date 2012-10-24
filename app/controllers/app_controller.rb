@@ -7,7 +7,6 @@ class AppController < ApplicationController
   def show
     name = params[:name]
     @app = App.find_by_short_name name
-    @app_asset = @app.app_assets.new
     respond_to do |format|
       format.xml # index.xml.builder
     end

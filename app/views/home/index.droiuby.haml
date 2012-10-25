@@ -9,10 +9,10 @@
     %t{width: 'match'} Your Apps
     %layout{type: 'scroll', width: 'match', height: 'match'}
       %layout{type: 'linear', width: 'match', height: 'wrap'}
-        - current_user.apps.each do |a|
+        - current_user.apps.order('short_name').each do |a|
           %layout{type: 'linear', background_color: '#000000',orientation: 'horizontal', height: '1dip', width: 'match'}
           %layout{type: 'linear'}
-            %t{size: 24, color: '#9E2857'}= a.name
+            %t{size: 24, color: '#9E2857'}= "#{a.short_name} (#{a.name})"
             %t{size: 12}= a.description
-            %button{id: 'view_xml', class: 'droiuby-link-app', width: 'match', "data-url"=> config_url(name: a.name, format: 'xml')} Run
+            %button{id: 'view_xml', class: 'droiuby-link-app', width: 'match', "data-url"=> config_url(short_name: a.short_name, format: 'xml')} Run
           %layout{type: 'linear', orientation: 'horizontal', height: '3dip', width: 'match'}

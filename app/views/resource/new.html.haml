@@ -8,7 +8,7 @@
       .form-inline
         = f.submit "Save", class: 'btn btn-primary save-app-button ', :"data-loading-text" => "Saving...", :disabled=>"disabled"
         = f.text_field :name, class: "input", placeholder: 'name'
-        = f.select :resource_type, options_for_select([["Layout", Resource::TYPE[:template]], ["Image", Resource::TYPE[:image]], ["Script", Resource::TYPE[:script]]], @resource.resource_type), class: 'resource-type-picker span1'
+        = f.select :resource_type, options_for_select([["Layout", Resource::TYPE[:template]], ["Image", Resource::TYPE[:image]], ["Script", Resource::TYPE[:script]], ["CSS", Resource::TYPE[:css]]], @resource.resource_type), class: 'resource-type-picker span1'
         %span.layout-only{class: (@resource.resource_type==Resource::TYPE[:template]) ? '' : 'hidden' }
           = f.label :main_resource, "Main layout?"
           - checked =  (@resource.persisted? && @resource.main_layout?) ? 'checked' : 'unchecked'

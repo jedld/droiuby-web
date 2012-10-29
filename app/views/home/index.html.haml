@@ -26,6 +26,6 @@
         - else
           %td
         %td
-          = link_to('info',app_info_path(a), class: 'btn')
-          = link_to('Edit', app_edit_show_path(a), class: 'btn btn-primary')
-          = link_to('manage resource', show_resource_path(a), class: 'btn btn-inverse')
+          = link_to('<i class="icon-info-sign"></i> Info'.html_safe,app_info_path(a), class: 'btn')
+          = link_to('<i class="icon-edit"></i> Edit'.html_safe, app_edit_show_path(a), class: 'btn btn-primary')
+          = link_to('<i class="icon-list"></i> Manage Resource'.html_safe, show_resource_path(a), class: 'btn btn-inverse')

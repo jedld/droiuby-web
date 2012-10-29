@@ -1,6 +1,6 @@
 class Resource < ActiveRecord::Base
 
-  TYPE = {template: 0, image: 1, script: 2}
+  TYPE = {template: 0, image: 1, script: 2, css: 3}
 
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => :app_id
@@ -24,6 +24,8 @@ class Resource < ActiveRecord::Base
         "image"
       when TYPE[:script]
         "script"
+      when TYPE[:css]
+        "css"
     end
   end
 
@@ -41,6 +43,10 @@ class Resource < ActiveRecord::Base
 
   def is_image?
     resource_type == TYPE[:image]
+  end
+
+  def is_css?
+    resource_type == TYPE[:css]
   end
 
   protected

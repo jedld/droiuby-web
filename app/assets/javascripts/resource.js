@@ -8,6 +8,10 @@ $('select#resource_resource_type').live('change', function (e) {
     var main_layout_select = $('span.layout-only');
     $('form div.image-upload').addClass('hidden');
     main_layout_select.removeClass('hidden');
+    if (select.val() === '3') {
+        $('form div.resource-editor').removeClass('hidden');
+        droiuby.editor.getSession().setMode("ace/mode/css");
+    } else
     if (select.val() === '2') {
         $('form div.resource-editor').removeClass('hidden');
         droiuby.editor.getSession().setMode("ace/mode/ruby");

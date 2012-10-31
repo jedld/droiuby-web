@@ -22,6 +22,9 @@
   - if (@resource.resource_type == Resource::TYPE[:script])
     :javascript
       droiuby.editor.getSession().setMode("ace/mode/ruby");
+  - elsif (@resource.resource_type == Resource::TYPE[:css])
+    :javascript
+      droiuby.editor.getSession().setMode("ace/mode/css");
   - else (@resource.resource_type == Resource::TYPE[:template])
     :javascript
       droiuby.editor.getSession().setMode("ace/mode/xml");
